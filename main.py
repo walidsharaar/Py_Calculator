@@ -1,16 +1,51 @@
-# This is a sample Python script.
+# Simple Calculator in pyhton
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#Add the number
+def addition(number1,number2):
+    return (number1+number2)
+
+#Substract the number
+def substraction(number1,number2):
+    return (number1-number2)
+
+#Multiply the number
+def multiply(number1,number2):
+    return (number1*number2)
+
+#Divide the number
+def division(number1,number2):
+    if number2 == 0 :
+        print("You Entered Invalid Number")
+    else:
+        return (number1/number2)
+
+#create dictionary of the operations
+
+operations ={"+":addition,
+             "-":substraction,
+             "*":multiply,
+             "/":division}
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def calculator():
+    num1 = float(input("What's the first number?: "))
+    for symbol in operations:
+        print(symbol)
+    should_continue = True
+
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = float(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ") == 'y':
+            num1 = answer
+        else:
+            should_continue = False
+            calculator()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+calculator()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
